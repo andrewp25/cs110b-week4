@@ -17,14 +17,6 @@ int displayMenu()
     const int FULL_DECK = 21;                   //Size declarator for arrays.
     int count;                             				     //Counter to print arrays.
 	int deckChoice;								// For the user to choose the deck of the card.
-    //int full21CardDeckArray[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
-
-//	int full21CardDeckArray[FULL_DECK];
-
-//	for (count = 0; count < FULL_DECK; count++)
-//		full21CardDeckArray[count] = count++;
-
-    //int full21CardDeckArray[FULL_DECK]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 
 	int full21CardDeckArray[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
     int pressZero = 0;
@@ -96,6 +88,8 @@ int combinedDeck[21];
 
 		case 2:
 
+		// Cycle cards first time.
+
 		for (int count = 0; count < FULL_DECK; count++)
 		{
 			combinedDeck[count] = cardPile2[count];
@@ -111,15 +105,49 @@ int combinedDeck[21];
 			}
 		}
 
+		//Cycle cards second time.
+
+		for (int count = 0; count < FULL_DECK; count++)
+		{
+			combinedDeck[count] = cardPile2[count];
+
+			for (int count = 0;  count < 7;  count++)
+			{
+				combinedDeck[count + 7] = cardPile1[count];
+
+				for (int count = 0; count < 7; count++)
+				{
+					combinedDeck[count + 14] = cardPile3[count];
+				}
+			}
+		}
+
+		// Cycle cards third and final time.
+
+		for (int count = 0; count < FULL_DECK; count++)
+		{
+			combinedDeck[count] = cardPile1[count];
+
+			for (int count = 0;  count < 7;  count++)
+			{
+				combinedDeck[count + 7] = cardPile2[count];
+
+				for (int count = 0; count < 7; count++)
+				{
+					combinedDeck[count + 14] = cardPile3[count];
+				}
+			}
+		}
 		// Print out the new suffled deck of cards.
+
 		cout << "The shuffled deck is: " << endl;
 		for (int count = 0; count < 21; count++)
 		{
 			cout << combinedDeck[count] << endl;
 		}
+		cout << "The card you chose is: " << combinedDeck[11] << endl;
+		cout << "This is correct?" << endl;
 		break;
-
-
 	}
 	return 0;
 }
